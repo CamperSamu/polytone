@@ -160,6 +160,12 @@ public class ColormapsManager extends JsonImgPartialReloader {
 
     private static void tryAcceptingTexture(ArrayImage selectedTexture, ResourceLocation textureLoc, Colormap colormap,
                                             Set<ResourceLocation> usedTexture, boolean strict) {
+        System.out.println("selectedTexture = " + selectedTexture);
+        System.out.println("textureLoc = " + textureLoc);
+        System.out.println("colormap = " + colormap);
+        System.out.println("usedTexture = " + usedTexture);
+        System.out.println("strict = " + strict);
+
         if (colormap.hasTexture()) return; //we already are filled
         if (selectedTexture != null) {
             usedTexture.add(textureLoc);
@@ -173,7 +179,7 @@ public class ColormapsManager extends JsonImgPartialReloader {
                 Polytone.LOGGER.error("Could not resolve explicit texture at location {}.png. Skipping", explTarget);
             }
             if (strict) {
-            throw new IllegalStateException("Could not find any colormap texture .png associated with path " + textureLoc);
+                new IllegalStateException("Could not find any colormap texture .png associated with path " + textureLoc).printStackTrace();
             }
         }
     }
